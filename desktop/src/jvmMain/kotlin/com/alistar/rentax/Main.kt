@@ -45,7 +45,7 @@ fun AppPreview() {
 
 fun main() = application {
     Window(
-        title = "RentalX",
+        title = "RentaX",
         state = rememberWindowState(size = DpSize(width = 350.dp, height = 700.dp)),
         onCloseRequest = ::exitApplication
     ) {

@@ -2,32 +2,17 @@
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
 }
 
+group = "com.alistar.shared"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-    android()
+    androidTarget()
 
     jvm("desktop")
-
-    ios()
-    iosSimulatorArm64()
-
-    cocoapods {
-        summary = "Shared code for the sample"
-        homepage = "https://github.com/JetBrains/compose-jb"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
-        framework {
-            baseName = "shared"
-            isStatic = true
-        }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
-    }
 
     sourceSets {
         val commonMain by getting {
@@ -48,10 +33,6 @@ kotlin {
                 api("androidx.core:core-ktx:1.9.0")
             }
         }
-        val iosMain by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
         val desktopMain by getting {
             kotlin.srcDirs("src/jvmMain/kotlin")
             dependencies {
@@ -62,6 +43,7 @@ kotlin {
 }
 
 android {
+    namespace = "com.alistar.shared"
     compileSdk = 33
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res", "src/commonMain/resources")
@@ -70,7 +52,7 @@ android {
         targetSdk = 33
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

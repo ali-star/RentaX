@@ -78,6 +78,14 @@ fun TopAppBar() {
             )
         }
         Box(Modifier.size(54.dp)) {
+            Image(
+                painter = painterResource("avatar.jpg"),
+                contentDescription = "Avatar",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape),
+            )
             Icon(
                 imageVector = Icons.Filled.AddCircle,
                 modifier = Modifier
@@ -88,14 +96,6 @@ fun TopAppBar() {
                     .align(Alignment.BottomEnd),
                 contentDescription = "Location",
                 tint = Colors.yellow,
-            )
-            Image(
-                painter = painterResource("avatar.jpg"),
-                contentDescription = "Avatar",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clip(CircleShape),
             )
         }
     }
